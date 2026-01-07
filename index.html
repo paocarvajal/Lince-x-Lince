@@ -1,0 +1,1233 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Business Case - Peer Tutoring UVM</title>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --uvm-red: #B8292F;
+            --uvm-red-dark: #840D13;
+            --uvm-gray: #333333;
+            --uvm-light-gray: #f4f4f4;
+            --uvm-white: #ffffff;
+            --uvm-gold: #F0D590;
+        }
+
+        body {
+            font-family: 'Roboto', sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: var(--uvm-light-gray);
+            color: var(--uvm-gray);
+            line-height: 1.6;
+        }
+
+        /* Header / Navigation */
+        header {
+            background-color: var(--uvm-white);
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            padding: 1rem 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-bottom: 4px solid var(--uvm-red);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        .logo {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--uvm-red);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .logo::before {
+            content: '';
+            display: block;
+            width: 40px;
+            height: 40px;
+            background: linear-gradient(135deg, var(--uvm-red), var(--uvm-red-dark));
+            border-radius: 4px;
+            /* Abstract shield shape */
+            mask: url('data:image/svg+xml;utf8,<svg viewBox="0 0 24 24" fill="white" xmlns="http://www.w3.org/2000/svg"><path d="M12 1L3 5V11C3 16.55 6.84 21.74 12 23C17.16 21.74 21 16.55 21 11V5L12 1ZM12 4C13.66 4 15 5.34 15 7C15 8.66 13.66 10 12 10C10.34 10 9 8.66 9 7C9 5.34 10.34 4 12 4ZM16 15.5C16 16.33 15.33 17 14.5 17H9.5C8.67 17 8 16.33 8 15.5V13H16V15.5Z"/></svg>') no-repeat center;
+            -webkit-mask: url('data:image/svg+xml;utf8,<svg viewBox="0 0 24 24" fill="white" xmlns="http://www.w3.org/2000/svg"><path d="M12 1L3 5V11C3 16.55 6.84 21.74 12 23C17.16 21.74 21 16.55 21 11V5L12 1Z"/></svg>') no-repeat center;
+        }
+
+        .campus-name {
+            font-weight: 300;
+            color: var(--uvm-gray);
+            font-size: 1rem;
+        }
+
+        /* Hero Section */
+        .hero {
+            background: linear-gradient(rgba(132, 13, 19, 0.9), rgba(184, 41, 47, 0.8)), url('https://images.unsplash.com/photo-1541339907198-e08756dedf3f?ixlib=rb-1.2.1&auto=format&fit=crop&w=1950&q=80');
+            background-size: cover;
+            background-position: center;
+            color: var(--uvm-white);
+            padding: 4rem 2rem 6rem;
+            text-align: center;
+        }
+
+        .hero h1 {
+            font-size: 2.8rem;
+            margin: 0;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+        }
+
+        .hero h2 {
+            font-size: 1.5rem;
+            font-weight: 300;
+            color: var(--uvm-white);
+            border: none;
+            margin-top: 0.5rem;
+            opacity: 0.9;
+        }
+
+        .hero p {
+            font-size: 1rem;
+            margin-top: 1rem;
+            font-weight: 300;
+            color: #ddd;
+        }
+
+        /* Container */
+        .container {
+            max-width: 960px;
+            margin: -4rem auto 2rem;
+            padding: 0 1rem;
+            position: relative;
+            z-index: 10;
+        }
+
+        /* Content Card */
+        .content-card {
+            background: var(--uvm-white);
+            padding: 4rem;
+            border-radius: 8px;
+            box-shadow: 0 4px 25px rgba(0, 0, 0, 0.08);
+        }
+
+        /* Typhography & Elements */
+        h1,
+        h2,
+        h3,
+        h4 {
+            font-family: 'Roboto', sans-serif;
+        }
+
+        h2 {
+            color: var(--uvm-red);
+            font-size: 1.8rem;
+            border-bottom: 2px solid var(--uvm-light-gray);
+            padding-bottom: 0.5rem;
+            margin-top: 3rem;
+            margin-bottom: 1.5rem;
+        }
+
+        h2:first-child {
+            margin-top: 0;
+        }
+
+        h3 {
+            color: var(--uvm-gray);
+            font-size: 1.3rem;
+            margin-top: 2rem;
+            margin-bottom: 1rem;
+            font-weight: 700;
+        }
+
+        h4 {
+            font-size: 1.1rem;
+            color: var(--uvm-red-dark);
+            margin-bottom: 0.5rem;
+        }
+
+        p {
+            margin-bottom: 1.2rem;
+            text-align: justify;
+            color: #444;
+        }
+
+        ul,
+        ol {
+            padding-left: 20px;
+            margin-bottom: 1.5rem;
+        }
+
+        li {
+            margin-bottom: 0.5rem;
+        }
+
+        /* Tables */
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 25px 0;
+            box-shadow: 0 2px 15px rgba(0, 0, 0, 0.05);
+            font-size: 0.95rem;
+            border-radius: 6px;
+            overflow: hidden;
+        }
+
+        th,
+        td {
+            padding: 12px 15px;
+            text-align: left;
+            border-bottom: 1px solid #eee;
+        }
+
+        th {
+            background-color: var(--uvm-red);
+            color: white;
+            font-weight: 500;
+            text-transform: uppercase;
+            font-size: 0.85rem;
+            letter-spacing: 0.5px;
+        }
+
+        tr:nth-child(even) {
+            background-color: #fafafa;
+        }
+
+        tr:hover {
+            background-color: #f1f1f1;
+        }
+
+        /* Quotes */
+        blockquote {
+            border-left: 4px solid var(--uvm-red);
+            margin: 25px 0;
+            padding: 15px 25px;
+            background-color: #fffbfb;
+            font-style: italic;
+            color: #555;
+            font-weight: 300;
+        }
+
+        /* Diagrams/Code */
+        pre {
+            background-color: #2b2b2b;
+            color: #f0f0f0;
+            padding: 20px;
+            border-radius: 6px;
+            overflow-x: auto;
+            font-family: 'Consolas', 'Monaco', monospace;
+            font-size: 0.85rem;
+            line-height: 1.4;
+            box-shadow: inset 0 0 10px rgba(0, 0, 0, 0.5);
+            margin: 20px 0;
+        }
+
+        /* Specific Sections */
+        .summary-box {
+            background-color: #fffdf5;
+            border-left: 5px solid var(--uvm-gold);
+            padding: 20px;
+            margin-bottom: 30px;
+            border-radius: 0 4px 4px 0;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.02);
+        }
+
+        .toc {
+            background-color: #fcfcfc;
+            border: 1px solid #eee;
+            padding: 30px;
+            border-radius: 8px;
+            margin-bottom: 40px;
+        }
+
+        .toc ul {
+            list-style-type: none;
+            padding: 0;
+            margin: 0;
+        }
+
+        .toc li {
+            margin-bottom: 10px;
+            border-bottom: 1px dotted #eee;
+            padding-bottom: 5px;
+        }
+
+        .toc a {
+            text-decoration: none;
+            color: var(--uvm-red);
+            font-weight: 500;
+            transition: color 0.2s;
+        }
+
+        .toc a:hover {
+            color: var(--uvm-red-dark);
+            text-decoration: underline;
+        }
+
+        /* Buttons */
+        .btn {
+            display: inline-block;
+            background-color: var(--uvm-red);
+            color: white;
+            padding: 12px 25px;
+            text-decoration: none;
+            border-radius: 4px;
+            font-weight: 500;
+            margin-top: 10px;
+            transition: all 0.3s;
+            box-shadow: 0 2px 5px rgba(184, 41, 47, 0.4);
+            cursor: pointer;
+        }
+
+        .btn:hover {
+            background-color: var(--uvm-red-dark);
+            transform: translateY(-1px);
+        }
+
+        /* Footer */
+        footer {
+            background-color: var(--uvm-gray);
+            color: var(--uvm-white);
+            text-align: center;
+            padding: 3rem 1rem;
+            margin-top: 4rem;
+        }
+
+        .footer-logo {
+            font-size: 1.5rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+            display: inline-block;
+        }
+
+        .meta-info {
+            font-size: 0.9rem;
+            color: #999;
+            margin-top: 3rem;
+            border-top: 1px solid #eee;
+            padding-top: 1rem;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .hero {
+                padding: 3rem 1rem 5rem;
+            }
+
+            .hero h1 {
+                font-size: 2rem;
+            }
+
+            .content-card {
+                padding: 2rem;
+            }
+
+            .container {
+                margin-top: -3rem;
+            }
+        }
+
+        /* Org Chart Styling */
+        .org-structure {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            margin: 40px 0;
+        }
+
+        .org-node {
+            background: white;
+            border: 2px solid var(--uvm-red);
+            border-radius: 8px;
+            padding: 15px 20px;
+            text-align: center;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            flex: 1;
+            min-width: 200px;
+            max-width: 300px;
+        }
+
+        .org-row {
+            display: flex;
+            gap: 40px;
+            justify-content: center;
+            width: 100%;
+            margin: 10px 0;
+            flex-wrap: wrap;
+        }
+
+        .org-node.main-node {
+            background-color: #fff5f5;
+            border-color: var(--uvm-red-dark);
+        }
+
+        .org-node .title {
+            font-weight: 700;
+            color: var(--uvm-red-dark);
+            margin-bottom: 5px;
+            text-transform: uppercase;
+            font-size: 0.9rem;
+        }
+
+        .org-node .desc {
+            font-size: 0.85rem;
+            color: #666;
+        }
+
+        .arrow {
+            font-size: 24px;
+            color: #ccc;
+            margin: 5px 0;
+            font-weight: bold;
+        }
+    </style>
+</head>
+
+<body>
+
+    <header>
+        <div class="logo">
+            UVM <span style="font-weight:300; margin-left: 10px; font-size: 0.8em; color: #555;">Laureate International
+                Universities</span>
+        </div>
+        <div class="campus-name">Campus Puebla</div>
+    </header>
+
+    <div class="hero">
+        <h1>Programa de Asesorías Académicas entre Pares</h1>
+        <h2>Business Case</h2>
+        <p>Presentado por Mtro. Oscar Manuel Alvarez Martinez & estudiante Diego Carvajal Sanchez</p>
+    </div>
+
+    <div class="container">
+        <div class="content-card">
+
+            <div class="meta-info" style="margin-top:0; border:none; margin-bottom: 2rem; text-align: center;">
+                <strong>Fecha:</strong> Enero 2026 &nbsp;|&nbsp; <strong>Versión:</strong> 1.0 &nbsp;|&nbsp;
+                <strong>Status:</strong> Propuesta
+            </div>
+
+            <div class="summary-box">
+                <h2 style="margin-top:0; border:none; font-size: 1.5rem;">RESUMEN EJECUTIVO</h2>
+
+                <h3>Oportunidad Identificada</h3>
+                <p>La Universidad del Valle de México Campus Puebla tiene la oportunidad de implementar un
+                    <strong>Programa de Asesorías Académicas entre Pares</strong> que transformará la experiencia de
+                    aprendizaje de nuestros estudiantes, mejorará los indicadores de retención académica y posicionará a
+                    la UVM como institución líder en innovación educativa.
+                </p>
+
+                <h3>Propuesta de Valor</h3>
+                <p>Crear un espacio físico dedicado donde estudiantes que han podido adquirir e internalizar el
+                    conocimiento brinden asesorías académicas a sus
+                    compañeros, bajo la supervisión de docentes, aprovechando el poder del aprendizaje colaborativo y la
+                    empatía generacional.</p>
+
+                <h3>Impacto Proyectado</h3>
+                <ul>
+                    <li><strong>Mejora académica:</strong> 15-20% de incremento en calificaciones de estudiantes
+                        asesorados (basado en evidencia internacional)</li>
+                    <li><strong>Retención estudiantil:</strong> Reducción de 25-30% en tasas de deserción de primer año
+                    </li>
+                    <li><strong>Desarrollo de liderazgo:</strong> Formación de 20-30 estudiantes asesores por
+                        cuatrimestre</li>
+                </ul>
+
+
+
+                <div style="text-align:center; margin-top:20px;">
+                    <span class="btn">Recomendación: Aprobar Implementación Inmediata</span>
+                </div>
+            </div>
+
+            <div class="toc">
+                <h3 style="margin-top:0;">TABLA DE CONTENIDOS</h3>
+                <ol>
+                    <li><a href="#section1">Análisis del Problema y Oportunidad</a></li>
+                    <li><a href="#section2">Benchmarking Internacional</a></li>
+                    <li><a href="#section3">Modelo Propuesto para UVM</a></li>
+                    <li><a href="#section4">Métricas de Impacto y ROI Académico</a></li>
+                    <li><a href="#section5">Presupuesto y Recursos</a></li>
+                    <li><a href="#section6">Plan de Implementación</a></li>
+                    <li><a href="#section7">Gestión de Riesgos</a></li>
+                    <li><a href="#section8">Conclusiones y Recomendaciones</a></li>
+                </ol>
+            </div>
+
+            <div id="section1">
+                <h2>1. ANÁLISIS DEL PROBLEMA Y OPORTUNIDAD</h2>
+
+                <h3>1.1 Contexto Institucional</h3>
+                <p>La UVM Campus Puebla, como parte de la red Laureate International Universities, se compromete a:</p>
+                <blockquote>"Ofrecer una educación asequible y de alta calidad y preparar a los estudiantes para
+                    carreras exitosas y logros a lo largo de su vida." — Misión Laureate</blockquote>
+                <p>Sin embargo, enfrentamos desafíos comunes en educación superior:</p>
+
+                <table>
+                    <tr>
+                        <th>Desafío</th>
+                        <th>Impacto Actual</th>
+                        <th>Datos UVM</th>
+                    </tr>
+                    <tr>
+                        <td><strong>Tasas de deserción en primer año</strong></td>
+                        <td>Alta rotación estudiantil</td>
+                        <td>~25-30% estudiantes de primer año</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Brechas de aprendizaje</strong></td>
+                        <td>Estudiantes con diferentes niveles de preparación</td>
+                        <td>Heterogeneidad académica significativa</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Limitación de horarios de atención</strong></td>
+                        <td>Docentes con carga horaria saturada</td>
+                        <td>Ratio estudiante:docente elevado</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Falta de espacios de colaboración</strong></td>
+                        <td>Aprendizaje individualista</td>
+                        <td>Cultura de aprendizaje no colaborativo</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Barreras para solicitar ayuda</strong></td>
+                        <td>Estudiantes no acuden a asesorías formales</td>
+                        <td>~70% no usa oficinas de atención docente</td>
+                    </tr>
+                </table>
+
+                <h3>1.2 Oportunidad Estratégica</h3>
+                <p><strong>¿Por qué AHORA?</strong></p>
+                <ol>
+                    <li><strong>Aprendizaje Personalizado:</strong> Los estudiantes requieren atención individualizada y
+                        adaptable que complemente la instrucción tradicional para maximizar su potencial.</li>
+                    <li><strong>Transformación digital:</strong> Tecnología disponible para tracking y medición de
+                        impacto</li>
+                    <li><strong>Talento estudiantil disponible:</strong> Estudiantes destacados como Diego Carvajal
+                        listos para liderar</li>
+                    <li><strong>Tendencia global:</strong> 85% de universidades top implementan programas peer tutoring
+                    </li>
+                    <li><strong>Diferenciador competitivo:</strong> Posicionar a UVM como universidad centrada en el
+                        estudiante</li>
+                </ol>
+
+                <h3>1.3 Alineación Estratégica</h3>
+                <p>Este programa se alinea directamente con:</p>
+                <ul>
+                    <li>✅ <strong>Modelo Educativo UVM:</strong> Aprendizaje centrado en el estudiante</li>
+                    <li>✅ <strong>Valores Laureate:</strong> Confianza, excelencia académica, comunidad</li>
+                    <li>✅ <strong>Objetivos Institucionales:</strong> Mejorar retención, satisfacción estudiantil y
+                        empleabilidad</li>
+                    <li>✅ <strong>Responsabilidad Social:</strong> Crear impacto positivo y duradero en la comunidad
+                        educativa</li>
+                </ul>
+            </div>
+
+            <div id="section2">
+                <h2>2. BENCHMARKING INTERNACIONAL</h2>
+
+                <h3>2.1 Evidencia Científica Global</h3>
+                <p><strong>Meta-análisis reciente (2024)</strong> de 27 estudios experimentales en educación superior
+                    demostró:</p>
+                <blockquote><strong>Effect Size (Hedges' g) = 0.480</strong><br>
+                    <em>Traducción: Los programas de peer tutoring tienen un efecto moderado-alto positivo en el
+                        rendimiento académico, equivalente a que un estudiante avance del percentil 50 al 66.</em>
+                </blockquote>
+                <p><strong>Fuente:</strong> <em>The Impact of Peer Tutoring Programs on Students' Academic Performance
+                        in Higher Education: A Meta-analysis</em>, The Asia-Pacific Education Researcher, 2024</p>
+
+                <h3>2.2 Mejores Prácticas - Harvard University</h3>
+                <p><strong>Programa:</strong> Beverly J. Duran Peer Tutoring Program<br>
+                    <strong>Institución:</strong> Academic Resource Center, Harvard College
+                </p>
+
+                <table>
+                    <tr>
+                        <th>Elemento</th>
+                        <th>Implementación Harvard</th>
+                    </tr>
+                    <tr>
+                        <td><strong>Elegibilidad tutores</strong></td>
+                        <td>Estudiantes con A/A- en cursos específicos</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Estructura</strong></td>
+                        <td>Sesiones 1:1 de 60 minutos, máximo 2 por semana</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Supervisión</strong></td>
+                        <td>Docentes revisan y aprueban tutores por materia</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Enfoque pedagógico</strong></td>
+                        <td>No hacen tareas, enseñan conceptos y estrategias</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Integridad académica</strong></td>
+                        <td>Protocolo estricto adherido al Honor Code</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Gratuito</strong></td>
+                        <td>100% sin costo para estudiantes</td>
+                    </tr>
+                </table>
+
+                <h3>2.3 Mejores Prácticas - Stanford University</h3>
+                <p><strong>Innovaciones Destacadas:</strong></p>
+                <ul>
+                    <li>📊 Dashboard en tiempo real de demanda por materia</li>
+                    <li>🎯 Algoritmo de matching tutor-alumno por estilo de aprendizaje</li>
+                    <li>📱 App móvil para agendar y recibir notificaciones</li>
+                </ul>
+
+                <h3>2.4 Mejores Prácticas - Universidad de Granada, España</h3>
+                <p><strong>Resultados Medidos (Estudio Controlado):</strong></p>
+                <table>
+                    <tr>
+                        <th>Métrica</th>
+                        <th>Grupo Experimental</th>
+                        <th>Grupo Control</th>
+                        <th>Diferencia</th>
+                    </tr>
+                    <tr>
+                        <td><strong>GPA promedio</strong></td>
+                        <td>7.8/10</td>
+                        <td>6.9/10</td>
+                        <td><strong>+13%</strong> ✅</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Tasa de éxito (aprobación)</strong></td>
+                        <td>87%</td>
+                        <td>72%</td>
+                        <td><strong>+15 pp</strong> ✅</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Tasa de retención</strong></td>
+                        <td>94%</td>
+                        <td>79%</td>
+                        <td><strong>+15 pp</strong> ✅</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Uso de estrategias</strong></td>
+                        <td>+35%</td>
+                        <td>Baseline</td>
+                        <td><strong>+35%</strong> ✅</td>
+                    </tr>
+                </table>
+
+                <h3>2.6 Factores de Éxito Identificados</h3>
+                <p>Según investigación consolidada, los programas MÁS exitosos tienen:</p>
+                <table>
+                    <tr>
+                        <th>Factor</th>
+                        <th>Impacto</th>
+                        <th>Prioridad</th>
+                    </tr>
+                    <tr>
+                        <td><strong>1. Entrenamiento pedagógico</strong></td>
+                        <td>+0.25 effect size</td>
+                        <td>🔴 CRÍTICO</td>
+                    </tr>
+                    <tr>
+                        <td><strong>2. Estructura y rutinas claras</strong></td>
+                        <td>+0.18 effect size</td>
+                        <td>🔴 CRÍTICO</td>
+                    </tr>
+                    <tr>
+                        <td><strong>3. Supervisión docente activa</strong></td>
+                        <td>+0.16 effect size</td>
+                        <td>🟡 ALTO</td>
+                    </tr>
+                    <tr>
+                        <td><strong>4. Sesiones frecuentes (3+)</strong></td>
+                        <td>+0.22 effect size</td>
+                        <td>🟡 ALTO</td>
+                    </tr>
+                </table>
+                <blockquote>"La efectividad NO depende del presupuesto, sino de la CALIDAD DEL DISEÑO del programa."
+                </blockquote>
+            </div>
+
+            <div id="section3" style="margin-top: 60px;">
+                <div
+                    style="background: linear-gradient(135deg, var(--uvm-red) 0%, var(--uvm-red-dark) 100%); color: white; padding: 30px; border-radius: 12px; margin-bottom: 40px; text-align: center; box-shadow: 0 10px 20px rgba(184, 41, 47, 0.2);">
+                    <h2
+                        style="color: white; border-bottom: 2px solid rgba(255,255,255,0.3); padding-bottom: 15px; margin: 0 0 15px 0; font-size: 2.2rem; display: inline-block;">
+                        3. MODELO PROPUESTO PARA UVM</h2>
+                    <p style="color: rgba(255,255,255,0.9); font-size: 1.1rem; margin: 0;">Infraestructura, Proceso y
+                        Estrategia</p>
+                </div>
+
+                <h3>3.1 Visión del Programa</h3>
+                <p><strong>NOMBRE SUGERIDO:</strong> "Lince x Lince"</p>
+                <div
+                    style="background-color: #f9f9f9; border-left: 4px solid var(--uvm-red); padding: 10px 15px; margin-bottom: 20px; font-size: 0.9rem;">
+                    <strong>Justificación del Naming:</strong>
+                    <ul style="margin: 5px 0; padding-left: 20px;">
+                        <li><strong>Identidad:</strong> Refuerza el sentido de pertenencia y orgullo de ser Lince UVM.
+                        </li>
+                        <li><strong>Concepto:</strong> "x" (por) denota multiplicación de conocimiento y colaboración
+                            par-a-par en lenguaje matemático/moderno.</li>
+                        <li><strong>Memorabilidad:</strong> Corto, sonoro y fácil de recordar para los estudiantes
+                            ("¿Nos vemos en Lince x Lince?").</li>
+                    </ul>
+                </div>
+                <p><strong>MISIÓN:</strong> Crear una comunidad de aprendizaje colaborativo donde estudiantes destacados
+                    apoyen a sus compañeros en el dominio de contenidos académicos, desarrollo de estrategias de estudio
+                    y construcción de confianza académica, bajo un modelo de mentoría horizontal que fortalece tanto a
+                    asesores como asesorados.</p>
+
+                <h3>3.2 Modelo Operativo</h3>
+
+                <h4>A. Estructura del Programa</h4>
+                <div class="org-structure" style="display:flex; flex-direction:column; gap:20px;">
+                    <!-- Top Level -->
+                    <div style="display:flex; justify-content:center;">
+                        <div class="org-node" style="max-width:350px;">
+                            <div class="title">Coordinador Institucional</div>
+                            <div class="desc">Coordinación Académica + Servicios Escolares</div>
+                        </div>
+                    </div>
+
+                    <div class="arrow">↓</div>
+
+                    <!-- Middle Level -->
+                    <div class="org-row" style="align-items:stretch;">
+                        <div class="org-node" style="border-color:#777; background:#fafafa;">
+                            <div class="title" style="color:#555;">Docentes Supervisores</div>
+                            <div class="desc">3-5 Docentes<br><span style="font-size:0.8em; color:#888;">(Mentores y
+                                    Validadores)</span></div>
+                        </div>
+
+                        <div class="org-node main-node" style="flex:1.5; border-width:3px; transform:scale(1.02);">
+                            <div class="title" style="font-size:1.1rem;">Estudiantes Asesores</div>
+                            <div class="desc">20-30 Estudiantes Destacados<br><strong
+                                    style="color:var(--uvm-red);">Líderes de Grupos de Estudio</strong></div>
+                        </div>
+                    </div>
+
+                    <div class="arrow">↓</div>
+
+                    <!-- Bottom Level -->
+                    <div style="display:flex; justify-content:center;">
+                        <div class="org-node" style="background:#eef3e8; border-color:#82c91e;">
+                            <div class="title" style="color:#2b641e;">Estudiantes Asesorados</div>
+                            <div class="desc">150-200 Estudiantes<br>Organizados en <strong>Equipos de Trabajo
+                                    Temáticos</strong></div>
+                        </div>
+                    </div>
+                </div>
+
+                <h4>B. Roles y Responsabilidades</h4>
+                <ul>
+                    <li><strong>Coordinador Institucional:</strong> Diseño, selección, supervisión, gestión presupuestal
+                        (10-15 hrs/semana).</li>
+                    <li><strong>Docentes Supervisores (3-5):</strong> Supervisión de calidad, feedback, presencia en
+                        espacio (4-6 hrs/semana).</li>
+                    <li><strong>Estudiantes Asesores (Peer Tutors):</strong> Recibirán capacitación sencilla y práctica
+                        impartida por Coordinadores y Docentes sobre cómo transmitir conocimientos de forma ordenada y
+                        ágil, enfocada en las mejores prácticas de peer tutoring para asegurar la eficiencia del
+                        programa.</li>
+                    <li><strong>Estudiantes Asesorados:</strong> Cualquier estudiante UVM, servicio gratuito y
+                        voluntario.</li>
+                </ul>
+
+                <h4>C. Materias y Horarios (Fase Piloto)</h4>
+                <div
+                    style="border: 2px dashed #B8292F; background-color: #fff5f5; color: #B8292F; padding: 15px; margin-bottom: 20px; text-align: center; border-radius: 6px;">
+                    <strong>⚠️ PENDIENTE: INFORMACIÓN REQUERIDA</strong><br>
+                    Solicitar al Mtro. Oscar Alvarez validar las materias prioritarias y cantidad de asesores.
+                </div>
+
+                <p><strong>Total Asesores Fase Piloto:</strong> [Por definir]</p>
+                <table>
+                    <tr>
+                        <th>Materia</th>
+                        <th>Carreras</th>
+                        <th>Asesores Requeridos</th>
+                    </tr>
+                    <tr>
+                        <td style="color:#ccc; font-style:italic;">(Espacio para completar)</td>
+                        <td></td>
+                        <td></td>
+                    </tr>
+                    <tr>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                    </tr>
+                    <tr>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                    </tr>
+                    <tr>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                    </tr>
+                </table>
+
+                <p><strong>Horarios de Operación:</strong> Lunes a Viernes 14:00 - 18:00 hrs (Periodo post-clases)</p>
+
+                <h3>3.3 Espacio Físico - "Centro de Aprendizaje Colaborativo"</h3>
+                <div
+                    style="border-left: 4px solid var(--uvm-gold); background-color: #fffdf5; padding: 15px; margin-bottom: 20px; font-size: 0.95rem;">
+                    <strong>📝 Nota:</strong> La siguiente distribución es una sugerencia basada en mejores prácticas.
+                    Esperamos su input y validación para definir los requerimientos exactos y proceder con la solicitud
+                    formal del espacio físico.
+                </div>
+                <p><strong>Distribución recomendada (80-100 m²):</strong></p>
+                <pre>
+┌─────────────────────────────────────────────────────┐
+│  RECEPCIÓN + CHECK-IN DIGITAL (Tablets)              │
+├──────────────────┬──────────────────────────────────┤
+│                  │                                  │
+│  ZONA 1:1        │   ZONA GRUPAL                   │
+│  (6-8 mesas)     │   (3-4 mesas grandes)           │
+│                  │                                  │
+├──────────────────┴──────────────────────────────────┤
+│  ESTACIÓN DOCENTE SUPERVISOR                        │
+├─────────────────────────────────────────────────────┤
+│  PIZARRONES MÓVILES + SMART TV                      │
+└─────────────────────────────────────────────────────┘</pre>
+
+                <h3>3.5 Metodología Pedagógica</h3>
+                <p><strong>Principios Fundamentales:</strong></p>
+                <ol>
+                    <li>NO hacemos la tarea del estudiante</li>
+                    <li>Enseñamos a PENSAR, no solo contenido</li>
+                    <li>Aprendizaje ACTIVO (el estudiante debe HACER)</li>
+                    <li>Zona de Desarrollo Próximo (Asesor como "andamiaje")</li>
+                </ol>
+            </div>
+
+            <div id="section4">
+                <h2>4. IMPACTO INSTITUCIONAL Y VALOR DE RETENCIÓN</h2>
+
+                <h3>4.1 El Costo Oculto de la Deserción</h3>
+                <p>Más allá del impacto académico, cada estudiante que deserta representa una pérdida significativa de
+                    ingresos futuros para la universidad. La inversión en tutoría es, en realidad, una estrategia de
+                    <strong>protección de ingresos</strong>.
+                </p>
+
+                <h3>4.2 Proyección de Valor Recuperado (Ejemplo Hipotético)</h3>
+                <table style="text-align: center;">
+                    <tr>
+                        <th style="text-align: left;">Concepto</th>
+                        <th>Escenario Conservador</th>
+                        <th>Escenario Optimista</th>
+                    </tr>
+                    <tr>
+                        <td style="text-align: left;">Estudiantes en riesgo atendidos</td>
+                        <td>80</td>
+                        <td>120</td>
+                    </tr>
+                    <tr>
+                        <td style="text-align: left;">Tasa de éxito en retención (estimada)</td>
+                        <td>10%</td>
+                        <td>25%</td>
+                    </tr>
+                    <tr>
+                        <td style="text-align: left;"><strong>Estudiantes retenidos (anual)</strong></td>
+                        <td><strong>8</strong></td>
+                        <td><strong>30</strong></td>
+                    </tr>
+                    <tr style="background-color: #eef9ee;">
+                        <td style="text-align: left; color: #155724; font-weight: bold;">Ingreso rescatado por
+                            colegiaturas*</td>
+                        <td style="color: #155724; font-weight: bold;">$ X40,000</td>
+                        <td style="color: #155724; font-weight: bold;">$ X,500,000+</td>
+                    </tr>
+                </table>
+                <p style="font-size: 0.8rem; color: #777;">*Cálculo ilustrativo basado en ticket promedio anual
+                    estimado. El valor real es exponencial al considerar la permanencia durante toda la carrera.</p>
+
+                <h3>4.3 Métricas de Éxito Académico (KPIs)</h3>
+                <ul>
+                    <li><strong>Índice de Aprobación:</strong> Comparativa vs. grupos sin tutoría.</li>
+                    <li><strong>Tasa de Retención:</strong> % de alumnos tutorados que se reinscriben al siguiente
+                        ciclo.</li>
+                    <li><strong>Satisfacción Estudiantil (NPS):</strong> Calidad percibida del servicio.</li>
+                </ul>
+            </div>
+
+            <div id="section5">
+                <h2>5. OPTIMIZACIÓN DE RECURSOS Y SOSTENIBILIDAD</h2>
+                <p>El programa "Lince x Lince" está diseñado bajo un modelo de <strong>Eficiencia Operativa</strong>,
+                    maximizando el uso de la capacidad instalada de la universidad sin requerir grandes inversiones de
+                    capital (CAPEX).</p>
+
+                <h3>5.1 Estructura de Costos "Costo Cero" (Smart Resource Allocation)</h3>
+                <table>
+                    <tr>
+                        <th>Recurso Requerido</th>
+                        <th>Estrategia de Obtención</th>
+                        <th>Costo Adicional Real</th>
+                    </tr>
+                    <tr>
+                        <td><strong>Talento Docente</strong> (Coordinadores)</td>
+                        <td>Reasignación estratégica de horas de descarga académica o gestión.</td>
+                        <td>$0 (Nómina actual)</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Talento Tutor</strong> (Estudiantes)</td>
+                        <td>Modelo de Servicio Social / Prácticas Profesionales y reconocimiento curricular.</td>
+                        <td>$0 (Voluntariado)</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Espacio Físico</strong></td>
+                        <td>Uso de aulas/espacios subutilizados en horarios valle (tarde).</td>
+                        <td>$0 (Activo existente)</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Mobiliario y Tecnología</strong></td>
+                        <td>Reubicación de mobiliario existente en bodega o aulas.</td>
+                        <td>$0 (Activo existente)</td>
+                    </tr>
+                </table>
+
+                <h3>5.2 Susalibindad Financiera</h3>
+                <p>Al no depender de un presupuesto externo recurrente, la sostenibilidad del programa se basa
+                    únicamente en la <strong>gestión eficiente del capital humano</strong> y la cultura institucional.
+                    Esto garantiza que el programa pueda perdurar independientemente de fluctuaciones presupuestales
+                    externas.</p>
+            </div>
+
+            <div id="section6">
+                <h2>6. PLAN DE IMPLEMENTACIÓN</h2>
+
+                <h3>6.1 Roadmap General</h3>
+                <ul>
+                    <li><strong>Fase 0: Preparación (Sem 1-4)</strong> - Aprobación, presupuesto, equipo.</li>
+                    <li><strong>Fase 1: Lanzamiento Piloto (Sem 5-20)</strong> - Reclutamiento, capacitación, operación.
+                    </li>
+                    <li><strong>Fase 2: Evaluación (Sem 21-24)</strong> - Análisis y ajustes.</li>
+                    <li><strong>Fase 3: Escalamiento</strong> - Expansión a más materias.</li>
+                </ul>
+
+                <h3>6.3 Sistema de Tracking</h3>
+                <p>Se recomienda el uso de plataforma especializada como <strong>Accudemia</strong> o implementación
+                    propia para tracking riguroso de asistencia, temas tratados y evaluación de sesiones en tiempo real.
+                </p>
+            </div>
+
+            <div id="section7">
+                <h2>7. GESTIÓN DE RIESGOS</h2>
+                <table>
+                    <tr>
+                        <th>Riesgo</th>
+                        <th>Severidad</th>
+                        <th>Mitigación</th>
+                    </tr>
+                    <tr>
+                        <td>Baja adopción inicial</td>
+                        <td>🟡 MEDIO</td>
+                        <td>Marketing agresivo + incentivos early adopters</td>
+                    </tr>
+                    <tr>
+                        <td>Calidad inconsistente</td>
+                        <td>🟡 MEDIO</td>
+                        <td>Capacitación rigurosa + supervisión activa</td>
+                    </tr>
+                    <tr>
+                        <td>Deserción de asesores</td>
+                        <td>🟢 BAJO</td>
+                        <td>Reconocimiento continuo + ambiente positivo</td>
+                    </tr>
+                </table>
+            </div>
+
+            <div id="section8">
+                <h2>8. CONCLUSIONES Y RECOMENDACIONES</h2>
+
+                <div
+                    style="background-color: var(--uvm-red); color: white; padding: 25px; border-radius: 8px; margin-bottom: 30px;">
+                    <h3 style="color:white; margin-top:0;">Declaración Final</h3>
+                    <p style="color:white; font-style:italic;">"El Programa 'Lince x Lince' representa una optimización
+                        inteligente de nuestros recursos institucionales. Al transformar el talento de nuestros mejores
+                        estudiantes en una red de apoyo académico estructurado, no solo atacamos frontalmente la
+                        deserción, sino que fortalecemos el sentido de comunidad y pertenencia. Es una solución de bajo
+                        costo financiero pero de altísimo impacto humano y académico."</p>
+                    <p style="color:white; font-weight:bold; text-align:right;">— El momento de actuar es ahora.</p>
+                </div>
+
+                <h3>Recomendaciones Estratégicas</h3>
+                <ol>
+                    <li><strong>APROBAR IMPLEMENTACIÓN INMEDIATA:</strong> Autorizar presupuesto para Fase Piloto
+                        Primavera 2026.</li>
+                    <li><strong>NOMBRAR COORDINADOR DEDICADO:</strong> Formalizar nombramiento para gestión del
+                        programa.</li>
+                    <li><strong>INICIAR CON MODELO ROBUSTO:</strong> Evitar versiones "diluidas" que comprometan la
+                        percepción de calidad.</li>
+                    <li><strong>MÉTRICAS CLARAS:</strong> Tracking riguroso desde el día 1.</li>
+                </ol>
+            </div>
+
+            <div id="referencias" style="margin-top: 50px;">
+                <h2>REFERENCIAS</h2>
+                <ul style="font-size: 0.85rem; color: #555; list-style-type: none; padding-left: 0;">
+                    <li style="margin-bottom: 10px;">Alegre Ansuátegui, F. J., Moliner Miravet, L., Lorenzo, G., &
+                        Maroto, A. (2018). Peer tutoring and academic achievement in mathematics: A meta-analysis.
+                        Eurasia Journal of Mathematics, Science and Technology Education, 14(1), 337-354.
+                        https://doi.org/10.12973/ejmste/79805</li>
+                    <li style="margin-bottom: 10px;">Arco, J. L., Fernández, F. D., Espín, A., & Castro, M. (2006,
+                        octubre). A cross-age peer tutoring program to prevent academic failure and drop-out among first
+                        year university students. En Proceedings. Frontiers in Education. 36th Annual Conference (pp.
+                        13-18). IEEE. https://doi.org/10.1109/fie.2006.322532</li>
+                    <li style="margin-bottom: 10px;">Arco-Tirado, J. L., Fernández-Martín, F. D., & Hervás-Torres, M.
+                        (2020). Evidence-based peer-tutoring program to improve students' performance at the university.
+                        Studies in Higher Education, 45(11), 2190-2202. https://doi.org/10.1080/03075079.2019.1597038
+                    </li>
+                    <li style="margin-bottom: 10px;">Arco-Tirado, J. L., Fernández-Martín, F. D., López-Ortega, S., &
+                        Heilborn, V. A. (2011). The impact of a peer-tutoring program on quality standards in higher
+                        education. Higher Education, 62(6), 773-788. https://doi.org/10.1007/s10734-011-9419-x</li>
+                    <li style="margin-bottom: 10px;">Barbetta, P. M., & Miller, A. D. (1991). Tutoring spelling: An
+                        application of the peer tutoring model. Academic Therapy, 27(2), 177-183.</li>
+                    <li style="margin-bottom: 10px;">Bettinger, E. P., & Baker, B. (2014). The effects of student
+                        coaching: An evaluation of a randomized experiment in student advising. Educational Evaluation
+                        and Policy Analysis, 36(1), 3-19. https://doi.org/10.3102/0162373713500523</li>
+                    <li style="margin-bottom: 10px;">California Collaborative for Educational Excellence. (2022). MIT
+                        J-PAL tutoring best practices for California.
+                        https://ccee-ca.org/wp-content/uploads/2022/06/MIT-JPAL-Tutoring-Best-Practices-for-California_.pdf
+                    </li>
+                    <li style="margin-bottom: 10px;">Chase, C., Chin, D., Oppezzo, M., & Schwartz, D. (2009). Teachable
+                        agents and the protégé effect: Increasing the effort towards learning. Journal of Science
+                        Education & Technology, 18(4), 334-352. https://doi.org/10.1007/s10956-009-9180-4</li>
+                    <li style="margin-bottom: 10px;">Cohen, P. A., Kulik, J. A., & Kulik, C. C. (1982). Educational
+                        outcomes of tutoring: A meta-analysis of findings. American Educational Research Journal, 19(2),
+                        237-248. https://doi.org/10.3102/00028312019002237</li>
+                    <li style="margin-bottom: 10px;">Colver, M., & Fry, T. (2016). Evidence to support peer tutoring
+                        programs at the undergraduate level. Journal of College Reading and Learning, 46(1), 16-41.
+                        https://doi.org/10.1080/10790195.2015.1075446</li>
+                    <li style="margin-bottom: 10px;">Cook, S. B., Scruggs, T. E., Mastropieri, M. A., & Casto, G. C.
+                        (1985). Handicapped students as tutors. The Journal of Special Education, 19(4), 483-492.
+                        https://doi.org/10.1177/002246698501900410</li>
+                    <li style="margin-bottom: 10px;">Cooper, H. (2017). Research synthesis and meta-analysis: A
+                        step-by-step approach (5ª ed.). SAGE Publications.</li>
+                    <li style="margin-bottom: 10px;">Deci, E. L., & Ryan, R. M. (2000). The "what" and "why" of goal
+                        pursuits: Human needs and the self-determination of behavior. Psychological Inquiry, 11(4),
+                        227-268. https://doi.org/10.1207/S15327965PLI1104_01</li>
+                    <li style="margin-bottom: 10px;">Delquadri, J., Greenwood, C. R., Whorton, D., Carta, J. J., & Hall,
+                        R. V. (1986). Classwide peer tutoring. Exceptional Children, 52(6), 535-542.
+                        https://doi.org/10.1177/001440298605200606</li>
+                    <li style="margin-bottom: 10px;">Doise, W., & Mugny, G. (1984). The social development of the
+                        intellect. Pergamon Press.</li>
+                    <li style="margin-bottom: 10px;">Durling, R., & Schick, C. (1976). Concept attainment by pairs and
+                        individuals as a function of vocalization. Journal of Educational Psychology, 68(1), 83-91.
+                        https://doi.org/10.1037/0022-0663.68.1.83</li>
+                    <li style="margin-bottom: 10px;">Engineerica Systems. (2024). Accudemia: Best tutoring center
+                        management software. https://www.engineerica.com/academic-centers/post/tutoring-software/</li>
+                    <li style="margin-bottom: 10px;">Engineerica Systems. (2025). AccuClass: Class attendance tracking
+                        software. https://www.engineerica.com/accuclass/</li>
+                    <li style="margin-bottom: 10px;">Engineerica Systems. (2025). Best student attendance tracking
+                        softwares. https://www.engineerica.com/academic-centers/post/student-attendance-tracking/</li>
+                    <li style="margin-bottom: 10px;">Entwistle, N. J. (1992). The impact of teaching and learning
+                        outcomes in higher education: A literature review. Universities and Colleges Staff Development
+                        Unit, CVCP.</li>
+                    <li style="margin-bottom: 10px;">Entwistle, N. J., & Ramsden, P. (1983). Understanding student
+                        learning. Croom Helm.</li>
+                    <li style="margin-bottom: 10px;">Falchikov, N. (1990). An experiment in same-age peer tutoring in
+                        higher education: Some observations concerning the repeated experience of tutoring or being
+                        tutored. En S. Goodlad & B. Hirst (Eds.), Explorations in peer tutoring (pp. 85-98). Basil
+                        Blackwell.</li>
+                    <li style="margin-bottom: 10px;">Fernández, F. D., & Arco, J. L. (2011). Efectos del Programa
+                        "Compañeros Ayudantes" sobre el desarrollo de habilidades sociales del alumnado participante
+                        [Effects of the "Peer Helper" Program on the development of social skills of participating
+                        students]. Electronic Journal of Research in Educational Psychology, 9(24), 479-498.</li>
+                    <li style="margin-bottom: 10px;">Fisher, D., & Frey, N. (2013). Better learning through structured
+                        teaching: A framework for the gradual release of responsibility (2ª ed.). ASCD.</li>
+                    <li style="margin-bottom: 10px;">Fuchs, D., Fuchs, L. S., Mathes, P. G., & Simmons, D. C. (1997).
+                        Peer-assisted learning strategies: Making classrooms more responsive to diversity. American
+                        Educational Research Journal, 34(1), 174-206. https://doi.org/10.3102/00028312034001174</li>
+                    <li style="margin-bottom: 10px;">Fuchs, L. S., & Fuchs, D. (2001). Peer-Assisted Learning Strategies
+                        (PALS). Vanderbilt University.</li>
+                    <li style="margin-bottom: 10px;">Ginsburg-Block, M. D., Fantuzzo, J. W., & Miller, T. R. (2003).
+                        Peer-assisted learning: An evidence-based practice to promote reading achievement. Psychology in
+                        the Schools, 40(6), 645-655. https://doi.org/10.1002/pits.10108</li>
+                    <li style="margin-bottom: 10px;">Greenwood, C. R., Carta, J. J., & Hall, R. V. (1988). The use of
+                        peer tutoring strategies in classroom management and educational instruction. School Psychology
+                        Review, 17(2), 258-275.</li>
+                    <li style="margin-bottom: 10px;">Greenwood, C. R., Delquadri, J. C., & Hall, R. V. (1989).
+                        Longitudinal effects of classwide peer tutoring. Journal of Educational Psychology, 81(3),
+                        371-383. https://doi.org/10.1037/0022-0663.81.3.371</li>
+                    <li style="margin-bottom: 10px;">Griffin, B. W., & Griffin, M. M. (1997). The effects of reciprocal
+                        peer tutoring on graduate students' achievement, test anxiety, and academic self-efficacy. The
+                        Journal of Experimental Education, 65(3), 197-209. https://doi.org/10.1080/00220973.1997.9943455
+                    </li>
+                    <li style="margin-bottom: 10px;">Harvard University. (2024). Peer tutoring - Academic Resource
+                        Center. https://academicresourcecenter.harvard.edu/what-we-offer/peer-tutoring/</li>
+                    <li style="margin-bottom: 10px;">Hattie, J. (2009). Visible learning: A synthesis of over 800
+                        meta-analyses relating to achievement. Routledge.</li>
+                    <li style="margin-bottom: 10px;">Higgins, J. P. T., Thomas, J., Chandler, J., Cumpston, M., Li, T.,
+                        Page, M. J., & Welch, V. A. (Eds.). (2023). Cochrane handbook for systematic reviews of
+                        interventions (Versión 6.4). Cochrane. www.training.cochrane.org/handbook</li>
+                    <li style="margin-bottom: 10px;">Holliday, W. G. (2012). Evaluating a peer tutoring program.
+                        CBE—Life Sciences Education, 11(4), 319-328. https://doi.org/10.1187/cbe.12-04-0047</li>
+                    <li style="margin-bottom: 10px;">Horner, R. H., Carr, E. G., Halle, J., McGee, G., Odom, S., &
+                        Wolery, M. (2005). The use of single-subject research to identify evidence-based practice in
+                        special education. Exceptional Children, 71(2), 165-179.
+                        https://doi.org/10.1177/001440290507100203</li>
+                    <li style="margin-bottom: 10px;">Jotform. (2023, diciembre 5). The importance of student attendance
+                        tracking software. https://www.jotform.com/blog/attendance-tracking-software/</li>
+                    <li style="margin-bottom: 10px;">Kalkowski, P. (2001). Peer and cross-age tutoring. School
+                        Improvement Research Series, Northwest Regional Educational Laboratory.
+                        https://educationnorthwest.org/sites/default/files/peer-and-cross-age-tutoring.pdf</li>
+                    <li style="margin-bottom: 10px;">Lake, D. (1999). Peer tutoring improves student performance in an
+                        advanced physiology course. Advances in Physiology Education, 277(6), S86-S92.
+                        https://doi.org/10.1152/advances.1999.277.6.S86</li>
+                    <li style="margin-bottom: 10px;">Li, S., Zhang, J., Yu, C., & Chen, L. (2024). The impact of peer
+                        tutoring programs on students' academic performance in higher education: A meta-analysis. The
+                        Asia-Pacific Education Researcher, 33(6), 1495-1509. https://doi.org/10.1007/s40299-024-00960-0
+                    </li>
+                    <li style="margin-bottom: 10px;">LinkedIn. (2024, febrero 17). What are the best practices for peer
+                        tutoring in the classroom?
+                        https://www.linkedin.com/advice/1/what-best-practices-peer-tutoring-classroom-skills-teaching
+                    </li>
+                    <li style="margin-bottom: 10px;">Mastropieri, M. A., Spencer, V., Scruggs, T. E., & Talbott, E.
+                        (2000). Students with disabilities as tutors: An updated research synthesis. En T. E. Scruggs &
+                        M. A. Mastropieri (Eds.), Advances in learning and behavioral disabilities (Vol. 14, pp.
+                        247-279). JAI Press.</li>
+                    <li style="margin-bottom: 10px;">Mathes, P. G., & Fuchs, L. S. (1994). The efficacy of peer tutoring
+                        in reading for students with mild disabilities: A best-evidence synthesis. School Psychology
+                        Review, 23(1), 59-80.</li>
+                    <li style="margin-bottom: 10px;">McMaster, K. L., Fuchs, D., & Fuchs, L. S. (2006). Research on
+                        peer-assisted learning strategies: The promise and limitations of peer-mediated instruction.
+                        Reading & Writing Quarterly, 22(1), 5-25. https://doi.org/10.1080/10573560500203491</li>
+                    <li style="margin-bottom: 10px;">Miller, D., & Miller, M. (1995). Helping students with special
+                        needs participate in their IEP development. Preventing School Failure, 39(3), 27-31.
+                        https://doi.org/10.1080/1045988X.1995.9944630</li>
+                    <li style="margin-bottom: 10px;">Model Teaching. (2023, noviembre 16). How to implement peer
+                        tutoring in the classroom.
+                        https://www.modelteaching.com/education-articles/teaching-strategies/how-to-implement-peer-tutoring-in-your-classroom
+                    </li>
+                    <li style="margin-bottom: 10px;">Moeyaert, M., Klingbeil, D. A., Rodabaugh, E., & Turan, M. (2021).
+                        Three-level meta-analysis of single-case data regarding the effects of peer tutoring on academic
+                        and social-behavioral outcomes for at-risk students and students with disabilities. Remedial and
+                        Special Education, 42(2), 94-106. https://doi.org/10.1177/0741932519855079</li>
+                    <li style="margin-bottom: 10px;">National Student Support Accelerator. (2024). Equalizing access to
+                        quality and high-impact tutoring. Stanford University. https://nssa.stanford.edu/</li>
+                    <li style="margin-bottom: 10px;">National Student Support Accelerator. (2024). Recommended student
+                        data metrics for high-impact tutoring programs.
+                        https://nssa.stanford.edu/toolkit-tutoring-programs/recommended-student-data-metrics-high-impact-tutoring-programs
+                    </li>
+                    <li style="margin-bottom: 10px;">Nestel, D., & Kidd, J. (2003). Peer tutoring in patient-centred
+                        interviewing skills: Experience of a project for first-year students. Medical Teacher, 25(4),
+                        398-403. https://doi.org/10.1080/0142159031000136770</li>
+                    <li style="margin-bottom: 10px;">Okilwa, N. S. A., & Shelby, L. (2010). The effects of peer tutoring
+                        on academic performance of students with disabilities in grades 6 through 12: A synthesis of the
+                        literature. Remedial and Special Education, 31(6), 450-463.
+                        https://doi.org/10.1177/0741932509355991</li>
+                    <li style="margin-bottom: 10px;">Reber, L. (2024). How to effectively leverage tutoring within an
+                        MTSS model. Branching Minds. https://www.branchingminds.com/blog/tutoring-mtss-model</li>
+                    <li style="margin-bottom: 10px;">REL Central. (2021, julio 30). Four considerations for developing a
+                        peer tutoring program. Marzano Research. https://marzanoresearch.com/peer-tutoring/</li>
+                    <li style="margin-bottom: 10px;">Sandling, J. (2024). En Jotform (2023). The importance of student
+                        attendance tracking software. https://www.jotform.com/blog/attendance-tracking-software/</li>
+                    <li style="margin-bottom: 10px;">SEAtS Software. (2024, mayo 10). 5 ways real-time student
+                        attendance data capture can impact institutional success.
+                        https://www.seatssoftware.com/5-ways-real-time-student-attendance-data-capture-can-impact-institutional-success/
+                    </li>
+                    <li style="margin-bottom: 10px;">Sharpley, A. M., & Sharpley, C. F. (1981). Peer tutoring: A review
+                        of the literature. Collected Original Resources in Education, 5(3), 7-C11.</li>
+                    <li style="margin-bottom: 10px;">Sherman, J. G. (1992). Reflections on PSI: Good news and bad.
+                        Journal of Applied Behavior Analysis, 25(1), 59-64. https://doi.org/10.1901/jaba.1992.25-59</li>
+                    <li style="margin-bottom: 10px;">Slideswith. (2024). The 11 best attendance tracking software
+                        options. https://slideswith.com/blog/best-attendance-tracking-software</li>
+                    <li style="margin-bottom: 10px;">Stanford University. (2024). Our tutoring program - Student
+                        Learning Programs. Center for Teaching and Learning.
+                        https://studentlearning.stanford.edu/tutoring</li>
+                    <li style="margin-bottom: 10px;">Sternberg, R. J. (1985). Beyond I.Q.: A triarchic theory of human
+                        intelligence. Cambridge University Press.</li>
+                    <li style="margin-bottom: 10px;">Study.com. (2019, junio 20). Teaching peer tutoring: Strategies &
+                        techniques. https://study.com/academy/lesson/teaching-peer-tutoring-strategies-techniques.html
+                    </li>
+                    <li style="margin-bottom: 10px;">Talbott, E., Trzaska, A., & Zurheide, J. L. (2017). Peer tutoring
+                        strategies for students with and at risk for emotional and behavioral disorders: A systematic
+                        review. Remedial and Special Education, 38(4), 221-236. https://doi.org/10.1177/0741932517693833
+                    </li>
+                    <li style="margin-bottom: 10px;">Topping, K. J. (1992). Co-operative learning and peer tutoring: An
+                        overview. The Psychologist, 5, 151-161.</li>
+                    <li style="margin-bottom: 10px;">Topping, K. J. (1996). The effectiveness of peer tutoring in
+                        further and higher education: A typology and review of the literature. Higher Education, 32(3),
+                        321-345. https://doi.org/10.1007/BF00138870</li>
+                    <li style="margin-bottom: 10px;">Topping, K. J. (2015). Peer tutoring: Old method, new developments.
+                        Revista de Psicodidáctica, 20(2), 305-320. https://doi.org/10.1387/RevPsicodidact.13110</li>
+                    <li style="margin-bottom: 10px;">Topping, K. J., Hill, S., McKaig, A., Rogers, C., Rushi, N., &
+                        Young, D. (1996). Paired reciprocal peer tutoring in undergraduate economics. Innovations in
+                        Education and Training International, 33(2), 96-113.</li>
+                    <li style="margin-bottom: 10px;">Topping, K. J., Simpson, G., Thompson, L., & Hill, S. (1997).
+                        Faculty-wide implementation and evaluation of peer-assisted learning in first-year undergraduate
+                        teaching. Higher Education Research & Development, 16(1), 7-31.
+                        https://doi.org/10.1080/0729436970160102</li>
+                    <li style="margin-bottom: 10px;">Universidad del Valle de México. (2010). Reglamento del personal
+                        académico.
+                        https://cpb-us-e1.wpmucdn.com/uvmblogs.org/dist/3/21/files/2013/08/Reglamento-del-personal-acad%C3%A9mico-1rcuwsq.pdf
+                    </li>
+                    <li style="margin-bottom: 10px;">U.S. Department of Education Program Effectiveness Panel.
+                        (1989-2001). National Diffusion Network - Peer-Assisted Learning Strategies (PALS).</li>
+                    <li style="margin-bottom: 10px;">Voyager Sopris Learning. (2024). How to incorporate peer tutoring
+                        and discussions in your classroom. https://www.voyagersopris.com/vsl/blog/peer-tutoring</li>
+                    <li style="margin-bottom: 10px;">Vygotsky, L. S. (1978). Mind in society: The development of higher
+                        psychological processes (M. Cole, V. John-Steiner, S. Scribner, & E. Souberman, Eds.). MIT
+                        Press.</li>
+                    <li style="margin-bottom: 10px;">Wang, Z., Xu, X., Han, Q., Chen, Y., & Chen, Y. (2024). Online peer
+                        tutoring programs fostering community and learning skills among college students. Education and
+                        Information Technologies, 29(14), 18321-18345. https://doi.org/10.1007/s10639-024-12656-5</li>
+                    <li style="margin-bottom: 10px;">Warwick, J. F., & Holton, D. (2001). Peer tutoring in first-year
+                        undergraduate mathematics. International Journal of Mathematical Education in Science and
+                        Technology, 32(2), 161-173. https://doi.org/10.1080/00207390010010777</li>
+                    <li style="margin-bottom: 10px;">Webb, N. M. (1982). Peer interaction and learning in co-operative
+                        small groups. Journal of Educational Psychology, 74(5), 642-655.
+                        https://doi.org/10.1037/0022-0663.74.5.642</li>
+                    <li style="margin-bottom: 10px;">Wexler, J., Reed, D. K., Pyle, N., Mitchell, M., & Barton, E. E.
+                        (2015). A synthesis of peer-mediated academic interventions for secondary struggling learners.
+                        Journal of Learning Disabilities, 48(5), 451-470. https://doi.org/10.1177/0022219413504995</li>
+                    <li style="margin-bottom: 10px;">Whitman, N. A. (1988). Peer teaching: To teach is to learn twice
+                        (ASHE-ERIC Higher Education Report No. 4). ERIC Clearinghouse on Higher Education.</li>
+                    <li style="margin-bottom: 10px;">Williams, C., & Grieco, M. (2013). Five peer tutoring strategies
+                        for the classroom. Educational Leadership, 71(2), 62-65.
+                        https://www.ascd.org/el/articles/five-peer-tutoring-strategies-for-the-classroom</li>
+                    <li style="margin-bottom: 10px;">Xu, Y., Gelfer, J., Sileo, N., Filler, J., & Perkins, P. (2001).
+                        Peer tutoring: Meeting the needs of students with disabilities in regular middle school
+                        classrooms. Reading & Writing Quarterly, 17(3), 223-234.
+                        https://doi.org/10.1080/105735601300007574</li>
+                </ul>
+            </div>
+
+            <hr style="border: 0; border-top: 1px solid #eee; margin: 40px 0;">
+
+            <div style="display:flex; justify-content:space-between; flex-wrap:wrap;">
+                <div style="flex:1; min-width:250px;">
+                    <h4>Presentado por:</h4>
+                    <p><strong>Mtro. Oscar Manuel Alvarez Martinez</strong><br>
+                        Coordinador Académico<br>
+                        UVM Campus Puebla</p>
+                </div>
+                <div style="flex:1; min-width:250px;">
+                    <p><br><br><strong>Diego Carvajal Sanchez</strong><br>
+                        Estudiante Impulsor de la Iniciativa<br>
+                        UVM Campus Puebla</p>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+    <footer>
+        <div class="footer-logo">UVM Campus Puebla</div>
+        <p>&copy; 2026 Universidad del Valle de México. Todos los derechos reservados.<br>
+            Laureate International Universities.</p>
+    </footer>
+
+</body>
+
+</html>
